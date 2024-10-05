@@ -1,7 +1,7 @@
 # Py-Web
 
 Để tải project về:
-      git clone https://github.com/GiaKiet2412/Py-Web.git
+      `git clone https://github.com/GiaKiet2412/Py-Web.git`
 
 Gõ lệnh sau để kích hoạt môi trường ảo:
      `venv\Scripts\Activate`
