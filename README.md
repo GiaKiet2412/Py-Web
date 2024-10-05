@@ -26,6 +26,7 @@ Mỗi lần bạn muốn thêm hoặc thay đổi file, hãy thực hiện các 
       `git pull origin master`
 2. Sửa đổi, thêm code code cần sửa
 3. Commit và push thay đổi của bạn lên GitHub:
+
       `git add .`
    
       `git commit -m "Mô tả thay đổi (Phải có mô tả thay đổi mới cập nhật được)"`
