@@ -1,5 +1,7 @@
 # Py-Web
 
+Cần tạo một folder để tải project về, sau đó mở Terminal tại folder vừa tạo để thêm project
+
 Để tải project về:
       `git clone https://github.com/GiaKiet2412/Py-Web.git`
 
