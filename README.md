@@ -22,6 +22,7 @@ Sử dụng lệnh này để chuyển đên thư mục chính:
 Sau đó, đường dẫn sẽ có dạng:
       `.../GearShop/GearShop`
 
+Để chạy project chạy lệnh: `python manage.py startapp shop`
 
 Mỗi lần bạn muốn thêm hoặc thay đổi file, hãy thực hiện các lệnh sau:
 1. Pull thay đổi mới nhất từ repository để cập nhật code từ các thành viên khác:
