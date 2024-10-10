@@ -5,6 +5,9 @@ Cần tạo một folder để tải project về, sau đó mở Terminal tại 
 Để tải project về:
       `git clone https://github.com/GiaKiet2412/Py-Web.git`
 
+Tạo môi trường ảo:
+      `python -m venv venv`
+
 Gõ lệnh sau để kích hoạt môi trường ảo:
      `venv\Scripts\Activate`
 
