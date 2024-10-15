@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng Nhập</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f5f5f5;
+        }
+        
+        .login-container {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 25px;
+            width: 600px; /* Tăng chiều ngang */
+        }
+        
+        h2 {
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 1.5em; /* Nhỏ hơn so với trước */
+        }
+        
+        .input-group {
+            margin-bottom: 18px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-size: 1.1em; /* Nhỏ hơn so với trước */
+        }
+        
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 12px; /* Giảm padding */
+            font-size: 1.1em; /* Giảm nhẹ kích thước chữ */
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+        
+        .password-wrapper {
+            position: relative;
+        }
+        
+        .eye-icon {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            font-size: 1.1em; /* Giảm nhẹ kích thước biểu tượng */
+        }
+        
+        .forgot-password {
+            text-align: right;
+            margin-bottom: 18px;
+        }
+        
+        .forgot-password a {
+            text-decoration: none;
+            font-size: 1em; /* Giảm nhẹ kích thước chữ */
+            color: #007bff;
+        }
+        
+        .login-btn {
+            width: 100%;
+            padding: 12px;
+            background-color: #e50914;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 1.2em; /* Giảm kích thước chữ nút */
+            cursor: pointer;
+            margin-bottom: 18px;
+        }
+        
+        .login-alt {
+            text-align: center;
+            margin-bottom: 12px;
+            font-size: 1em; /* Giảm nhẹ kích thước chữ */
+        }
+        
+        .social-login {
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .social-login button {
+            width: 48%;
+            padding: 12px; /* Giảm padding nút social */
+            border: none;
+            border-radius: 6px;
+            font-size: 1.1em; /* Giảm kích thước chữ nút social */
+            cursor: pointer;
+        }
+        
+        .google-btn {
+            background-color: #db4437;
+            color: white;
+        }
+        
+        .facebook-btn {
+            background-color: #3b5998;
+            color: white;
+        }
+        
+        .register {
+            text-align: center;
+            margin-top: 12px;
+            font-size: 1em; /* Giảm kích thước chữ */
+        }
+        
+        .register a {
+            text-decoration: none;
+            color: #007bff;
+        }
+        
+        
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-box">
+            <h2>ĐĂNG NHẬP HOẶC TẠO TÀI KHOẢN</h2>
+            <form action="#">
+                <div class="input-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" placeholder="Email">
+                </div>
+                <div class="input-group">
+                    <label for="password">Mật khẩu</label>
+                    <div class="password-wrapper">
+                        <input type="password" id="password" placeholder="Mật khẩu">
+                        <span class="eye-icon">👁️</span>
+                    </div>
+                </div>
+                <div class="forgot-password">
+                    <a href="#">Quên mật khẩu?</a>
+                </div>
+                <button type="submit" class="login-btn">ĐĂNG NHẬP</button>
+                <div class="login-alt">hoặc đăng nhập bằng</div>
+                <div class="social-login">
+                    <button class="google-btn">G+ Google</button>
+                    <button class="facebook-btn">Facebook</button>
+                </div>
+                <div class="register">
+                    Bạn chưa có tài khoản? <a href="register">Đăng ký ngay!</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

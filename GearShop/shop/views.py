@@ -5,6 +5,10 @@ from .models import Product, CartItem
 def home(request):
     return render(request, 'shop/home.html')
 
+#VIEW LOGIN
+def login(request):
+    return render(request, 'shop/login.html')
+
 # VIEW CHI TIẾT SẢN PHẨM
 def product_detail(request, id):
     product = get_object_or_404(Product, id=id)
