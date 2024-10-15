@@ -4,11 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chi Tiết Sản Phẩm</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        img {
+            max-width: 300px; /* Đặt kích thước tối đa cho hình ảnh */
+        }
+    </style>
 </head>
 <body>
+    {% load humanize %}
     <h1>Chi Tiết Sản Phẩm</h1>
     <h2>{{ product.name }}</h2>
-    <p>Giá: {{ product.price }} USD</p>
+    <img src="{{ product.image.url }}" alt="{{ product.name }}">
+    <p>Giá: {{ product.price|intcomma }} VNĐ</p>
     <p>Mô tả: {{ product.description }}</p>
     <a href="{% url 'home' %}">Quay lại trang chủ</a>
 </body>

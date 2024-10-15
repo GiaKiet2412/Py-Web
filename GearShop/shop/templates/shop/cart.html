@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giỏ Hàng</title>
+    <link rel="stylesheet" href="{% static 'css/cart.css' %}">
+</head>
+<body>
+    <h1>Giỏ Hàng</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>SẢN PHẨM</th>
+                <th>GIÁ</th>
+                <th>SỐ LƯỢNG</th>
+                <th>TỔNG TIỀN</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in cart_items %}
+            <tr>
+                <td>{{ item.product.name }}</td>
+                <td>{{ item.product.price }}</td>
+                <td>
+                    <form action="{% url 'update_cart' item.product.id %}" method="post">
+                        {% csrf_token %}
+                        <input type="number" name="quantity" value="{{ item.quantity }}" min="1">
+                        <button type="submit">Cập nhật</button>
+                    </form>
+                </td>
+                <td>${{ item.total.price }}</td>
+                <td>
+                    <a href="{% url 'remove_form_cart' item.product.id %}">Xóa</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <h3>Tổng tiền: ${{ total_price }}</h3>
+    <a href="/">Quay lại</a>
+</body>
+</html>
