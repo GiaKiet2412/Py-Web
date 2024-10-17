@@ -1,26 +1,93 @@
+{% load humanize %}
+{% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chi Tiết Sản Phẩm</title>
+    <link rel="stylesheet" href="{% static 'css/product_detail.css' %}">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
-        img {
-            max-width: 300px; /* Đặt kích thước tối đa cho hình ảnh */
-        }
+        
     </style>
 </head>
+
 <body>
-    {% load humanize %}
-    <h1>Chi Tiết Sản Phẩm</h1>
-    <h2>{{ product.name }}</h2>
-    <img src="{{ product.image.url }}" alt="{{ product.name }}">
-    <p>Giá: {{ product.price|intcomma }} VNĐ</p>
-    <p>Mô tả: {{ product.description }}</p>
-    <a href="{% url 'home' %}">Quay lại trang chủ</a>
+    <div class="product-container">
+        <div class="product-image">
+            <img src="{{ product.image.url }}" alt="{{ product.name }}">
+            <div class="additional-images">
+                <img src="https://via.placeholder.com/80" alt="Hình ảnh 1">
+                <img src="https://via.placeholder.com/80" alt="Hình ảnh 2">
+                <img src="https://via.placeholder.com/80" alt="Hình ảnh 3">
+                <img src="https://via.placeholder.com/80" alt="Hình ảnh 4">
+            </div>
+        </div>
+        <div class="product-info">
+            <h2>{{ product.name }}</h2>
+            <p>Giá: {{ product.price|intcomma }} VNĐ</p>
+            <div class="quantity-control">
+                <button class="quantity-button" onclick="changeQuantity(-1)">-</button>
+                <span class="quantity-display" id="quantity">1</span>
+                <button class="quantity-button" onclick="changeQuantity(1)">+</button>
+            </div>
+            <div style="margin-top: 10px;">
+                <a href="#" class="button">Thêm vào giỏ hàng</a>
+                <a href="#" class="button">Mua ngay</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="specs-container">
+        <div class="specs">
+            <h3>Mô tả sản phẩm</h3>
+            Mô tả: {{ product.description }}
+        </div>
+    </div>
+
+    <div class="related-products-container">
+        <h3>Sản phẩm liên quan</h3>
+        <div class="related-products-wrapper">
+            <div class="related-product">
+                <img src="https://via.placeholder.com/150" alt="Sản phẩm 1">
+                <p>Laptop 1</p>
+                <p>15,000,000₫</p>
+            </div>
+            <div class="related-product">
+                <img src="https://via.placeholder.com/150" alt="Sản phẩm 2">
+                <p>Laptop 2</p>
+                <p>18,000,000₫</p>
+            </div>
+            <div class="related-product">
+                <img src="https://via.placeholder.com/150" alt="Sản phẩm 3">
+                <p>Laptop 3</p>
+                <p>20,000,000₫</p>
+            </div>
+            <div class="related-product">
+                <img src="https://via.placeholder.com/150" alt="Sản phẩm 4">
+                <p>Laptop 4</p>
+                <p>22,000,000₫</p>
+            </div>
+            <div class="related-product">
+                <img src="https://via.placeholder.com/150" alt="Sản phẩm 5">
+                <p>Laptop 5</p>
+                <p>25,000,000₫</p>
+            </div>
+        </div>
+    </div>
+
+    <a href="{% url 'home' %}" class="back-button">Quay lại trang chủ</a>
+
+    <script>
+        let quantity = 1;
+
+        function changeQuantity(amount) {
+            quantity += amount;
+            if (quantity < 1) quantity = 1; // Đảm bảo số lượng không âm
+            document.getElementById('quantity').innerText = quantity;
+        }
+    </script>
 </body>
+
 </html>

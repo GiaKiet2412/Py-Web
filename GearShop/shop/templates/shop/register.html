@@ -4,14 +4,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Đăng Nhập</title>
-    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    <title>Đăng Ký</title>
+    <link rel="stylesheet" href="{% static 'css/register.css' %}">
 </head>
 <body>
     <div class="login-container">
         <div class="login-box">
-            <h2>ĐĂNG NHẬP HOẶC TẠO TÀI KHOẢN</h2>
+            <h2>ĐĂNG KÝ TÀI KHOẢN GEARVN</h2>
             <form action="#">
+                <div class="input-group">
+                    <label for="name">Họ và Tên</label>
+                    <input type="name" id="name" placeholder="Họ và Tên">
+                </div>
                 <div class="input-group">
                     <label for="email">Email</label>
                     <input type="email" id="email" placeholder="Email">
@@ -20,20 +24,16 @@
                     <label for="password">Mật khẩu</label>
                     <div class="password-wrapper">
                         <input type="password" id="password" placeholder="Mật khẩu">
-                        <span class="eye-icon">👁️</span>
                     </div>
                 </div>
-                <div class="forgot-password">
-                    <a href="#">Quên mật khẩu?</a>
-                </div>
-                <button type="submit" class="login-btn">ĐĂNG NHẬP</button>
-                <div class="login-alt">hoặc đăng nhập bằng</div>
-                <div class="social-login">
+                <button type="submit" class="register-btn">TẠO TÀI KHOẢN</button>
+                <div class="register-alt">hoặc đăng ký bằng</div>
+                <div class="social-register">
                     <button class="google-btn">G+ Google</button>
                     <button class="facebook-btn">Facebook</button>
                 </div>
                 <div class="register">
-                    Bạn chưa có tài khoản? <a href="{% url 'register' %}">Đăng ký ngay!</a>
+                    Bạn đã có tài khoản? <a href="{% url 'login' %}">Đăng nhập!</a>
                 </div>
             </form>
         </div>

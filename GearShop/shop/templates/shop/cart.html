@@ -1,5 +1,6 @@
 {% load static %}
 <!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,9 +9,12 @@
 </head>
 <body>
     <h1>Giỏ Hàng</h1>
+
+    {% if cart_items %}
     <table>
         <thead>
             <tr>
+                <th>HÌNH ẢNH</th>
                 <th>SẢN PHẨM</th>
                 <th>GIÁ</th>
                 <th>SỐ LƯỢNG</th>
@@ -21,24 +25,35 @@
         <tbody>
             {% for item in cart_items %}
             <tr>
+                <td><img src="{% static 'image/' %}{{ item.product.image }}" alt="{{ item.product.name }}"></td>
                 <td>{{ item.product.name }}</td>
-                <td>{{ item.product.price }}</td>
+                <td>{{ item.product.price }} VNĐ</td>
                 <td>
-                    <form action="{% url 'update_cart' item.product.id %}" method="post">
-                        {% csrf_token %}
+                    <form action="#" method="post"> <!-- Tạm bỏ URL thật -->
                         <input type="number" name="quantity" value="{{ item.quantity }}" min="1">
                         <button type="submit">Cập nhật</button>
                     </form>
                 </td>
-                <td>${{ item.total.price }}</td>
-                <td>
-                    <a href="{% url 'remove_form_cart' item.product.id %}">Xóa</a>
-                </td>
+                <td>{{ item.total_price }} VNĐ</td>
+                <td><a href="#">Xóa</a></td> <!-- Tạm bỏ URL thật -->
             </tr>
             {% endfor %}
         </tbody>
     </table>
-    <h3>Tổng tiền:{{ total_price }} VNĐ</h3>
+
+    <h3>Tổng tiền: {{ total_price }} VNĐ</h3>
+
+    {% if user.is_authenticated %}
+        <a href="#"><button>Thanh toán</button></a>
+        <a href="#"><button>Xóa tất cả</button></a> <!-- Tạm bỏ URL thật -->
+    {% else %}
+        <a href="#"><button>Đăng nhập để thanh toán</button></a>
+    {% endif %}
+
+    {% else %}
+    <p>Giỏ hàng của bạn trống.</p>
+    {% endif %}
+
     <a href="/">Quay lại</a>
 </body>
 </html>

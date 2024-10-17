@@ -33,11 +33,6 @@ tr:hover {
     background-color: #f1f1f1;
 }
 
-img {
-    width: 50px;
-    height: auto;
-}
-
 button {
     background-color: #4297DE;
     color: white;
@@ -51,17 +46,29 @@ button:hover {
     background-color: #3578b6;
 }
 
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+select {
+    padding: 10px;
+    width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+form {
+    margin-top: 20px;
+}
+
 a {
     text-decoration: none;
     color: #4297DE;
+    display: block;
     margin-top: 20px;
-    display: inline-block;
 }
 
 a:hover {
     text-decoration: underline;
-}
-
-form {
-    display: inline-block;
 }

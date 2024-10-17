@@ -1,13 +1,109 @@
+{% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trang Chủ</title>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>XTech - Thiết bị công nghệ chính hãng</title>
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
 </head>
 <body>
-    <h1>Chào mừng đến với GearShop</h1>
-    <p>Đây là trang chủ.</p>
-    <a href="{% url 'product_detail' 1 %}">Xem chi tiết sản phẩm Laptop XYZ</a>
+    <!-- Header -->
+    <header>
+        <div class="container container-header">
+            <!-- Logo -->
+            <div class="logo">
+                <a href="{% url 'home' %}"><img src="{% static 'image/{{ logo.jpg }}' %}" alt="Tên cửa hàng"></a>
+            </div>
+
+            <!-- Menu điều hướng -->
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#">Trang chủ</a></li>
+                    <li><a href="#">Sản phẩm</a></li>
+                    <li><a href="#">Khuyến mãi</a></li>
+                    <li><a href="#">Liên hệ</a></li>
+                    <li><a href="#">Đăng nhập</a></li>
+                    <li><a href="#">Đăng ký</a></li>
+                </ul>
+            </nav>
+
+            <!-- Icon tìm kiếm và giỏ hàng -->
+            <div class="header-icons">
+                <a href="#"><img src="search-icon.png" alt="Search"></a>
+                <a href="#"><img src="cart-icon.png" alt="Cart"></a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Banner -->
+    <section class="banner">
+        <div class="banner-content">
+            <h1>Siêu giảm giá tháng 10</h1>
+            <p>Mua ngay các sản phẩm công nghệ hàng đầu với giá ưu đãi</p>
+            <a href="#" class="btn">Mua ngay</a>
+        </div>
+    </section>
+
+    <!-- Sản phẩm nổi bật -->
+    <section class="featured-products">
+        <div class="container">
+            <h2>Sản phẩm nổi bật</h2>
+            <div class="product-grid">
+                <div class="product-item">
+                    <img src="laptop1.jpg" alt="Laptop 1">
+                    <h3>Laptop Gaming Gigabyte G5</h3>
+                    <p>Giá: 19,290,000đ</p>
+                    <a href="{% url 'product_detail' 1 %}" class="btn">Xem chi tiết</a>
+                </div>
+                <div class="product-item">
+                    <img src="laptop2.jpg" alt="Laptop 2">
+                    <h3>Laptop Gaming ABC</h3>
+                    <p>Giá: 30,000,000đ</p>
+                    <a href="{% url 'product_detail' 2 %}" class="btn">Xem chi tiết</a>
+                </div>
+                <div class="product-item">
+                    <img src="keyboard.jpg" alt="Bàn phím cơ">
+                    <h3>Bàn phím cơ XYZ</h3>
+                    <p>Giá: 2,000,000đ</p>
+                    <a href="{% url 'product_detail' 3 %}" class="btn">Xem chi tiết</a>
+                </div>
+                <div class="product-item">
+                    <img src="mouse.jpg" alt="Chuột gaming">
+                    <h3>Chuột Gaming ABC</h3>
+                    <p>Giá: 1,500,000đ</p>
+                    <a href="{% url 'product_detail' 4 %}" class="btn">Xem chi tiết</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-section">
+                <h4>Thông tin</h4>
+                <ul>
+                    <li><a href="#">Chính sách bảo hành</a></li>
+                    <li><a href="#">Chính sách đổi trả</a></li>
+                    <li><a href="#">Điều khoản dịch vụ</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Liên hệ</h4>
+                <ul>
+                    <li>Email: support@xtech.com</li>
+                    <li>Hotline: 1800 1234</li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Kết nối</h4>
+                <a href="#"><img src="fb-icon.png" alt="Facebook"></a>
+                <a href="#"><img src="ig-icon.png" alt="Instagram"></a>
+                <a href="#"><img src="yt-icon.png" alt="YouTube"></a>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>

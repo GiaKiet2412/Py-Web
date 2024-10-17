@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thanh Toán</title>
+    <link rel="stylesheet" href="{% static 'css/pay.css' %}">
+</head>
+<body>
+    <h1>Thanh Toán</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>SẢN PHẨM</th>
+                <th>GIÁ</th>
+                <th>SỐ LƯỢNG</th>
+                <th>TỔNG TIỀN</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in cart_items %}
+            <tr>
+                <td>{{ item.product.name }}</td>
+                <td>{{ item.product.price }} VNĐ</td>
+                <td>{{ item.quantity }}</td>
+                <td>{{ item.total_price }} VNĐ</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h3>Tổng tiền: {{ total_price }} VNĐ</h3>
+
+    <form action="{% url 'process_payment' %}" method="post">
+        {% csrf_token %}
+        <label for="payment-method">Chọn phương thức thanh toán:</label>
+        <select id="payment-method" name="payment_method" required>
+            <option value="credit_card">Thẻ tín dụng</option>
+            <option value="bank_transfer">Chuyển khoản ngân hàng</option>
+            <option value="cash_on_delivery">Thanh toán khi nhận hàng</option>
+        </select>
+        <button type="submit">Xác nhận thanh toán</button>
+    </form>
+
+    <a href="{% url 'cart_view' %}">Quay lại giỏ hàng</a>
+</body>
+</html>

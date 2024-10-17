@@ -1,0 +1,165 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9; /* Nền tổng thể màu trắng nhạt */
+    color: #333;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+a {
+    text-decoration: none;
+    color: #333;
+}
+
+/* Header */
+header {
+    background-color: #00bcd4; /* Màu xanh cyan cho nền header */
+    color: #fff;
+    padding: 15px 0;
+}
+
+.header-icons img {
+    width: 24px;
+    height: 24px;
+    margin-left: 15px;
+}
+
+.logo img {
+    width: 120px;
+}
+
+nav.main-nav ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav.main-nav ul li {
+    margin-right: 20px;
+}
+
+nav.main-nav ul li a {
+    color: white;
+    font-weight: bold;
+    padding: 10px 15px;
+    display: block;
+}
+
+nav.main-nav ul li a:hover {
+    background-color: #008c9e; /* Màu xanh cyan đậm hơn khi hover */
+    border-radius: 5px;
+}
+
+.header-icons {
+    display: flex;
+    align-items: center;
+}
+
+/* Chia phần header ra các cột ngang với flexbox */
+.container-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Banner */
+.banner {
+    background-image: url('banner.jpg');
+    background-size: cover;
+    background-position: center;
+    padding: 100px 0;
+    color: white;
+    text-align: center;
+}
+
+.btn {
+    background-color: #00bcd4; /* Màu nút xanh cyan */
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-transform: uppercase;
+}
+
+.btn:hover {
+    background-color: #008c9e; /* Màu xanh cyan đậm khi hover */
+}
+
+/* Sản phẩm nổi bật */
+.featured-products {
+    padding: 50px 0;
+    text-align: center;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.product-item {
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 10px;
+    background-color: white; /* Nền trắng cho các hộp sản phẩm */
+    transition: transform 0.3s ease;
+}
+
+.product-item img {
+    width: 100%;
+    height: auto;
+}
+
+.product-item:hover {
+    transform: scale(1.05);
+}
+
+/* Tin tức */
+.news-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+/* Footer */
+footer {
+    background-color: #00bcd4; /* Nền footer màu xanh cyan */
+    color: white;
+    padding: 20px 0;
+}
+
+footer .footer-section {
+    margin-bottom: 20px;
+}
+
+footer h4 {
+    margin-bottom: 15px;
+}
+
+footer ul {
+    list-style: none;
+    padding: 0;
+}
+
+footer ul li {
+    margin-bottom: 10px;
+}
+
+footer ul li a {
+    color: white;
+}
+
+footer ul li a:hover {
+    text-decoration: underline;
+}
+
+footer .footer-section a img {
+    width: 24px;
+    margin-right: 10px;
+}
