@@ -1,21 +1,27 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
     margin: 0;
-    padding: 20px;
+    padding: 0;
+    background-color: #f9f9f9;
+    color: #333;
 }
 
 h1 {
     text-align: center;
     color: #333;
+    margin-bottom: 30px;
+    font-size: 2em;
 }
 
 table {
     width: 100%;
+    max-width: 1500px;
+    margin: 20px auto;
     border-collapse: collapse;
-    margin: 20px 0;
     background-color: #fff;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
 }
 
 th, td {
@@ -25,43 +31,88 @@ th, td {
 }
 
 th {
-    background-color: #4297DE;
-    color: white;
+    background-color: #ff4d4d;
+    color: #fff;
+    font-weight: bold;
+    text-transform: uppercase;
 }
 
-tr:hover {
-    background-color: #f1f1f1;
+td {
+    vertical-align: middle;
 }
 
-img {
-    width: 50px;
-    height: auto;
+.image {
+    width: 100px;
+    height: 100px;
+    border-radius: 5px;
 }
 
 button {
-    background-color: #4297DE;
+    background-color: #ff4d4d;
     color: white;
     border: none;
-    padding: 10px 15px;
+    padding: 10px 20px;
+    margin-left: 20px;
     cursor: pointer;
     transition: background-color 0.3s;
+    border-radius: 5px;
+    font-size: 1em;
 }
 
 button:hover {
-    background-color: #3578b6;
+    background-color: #cb3e3e;
 }
 
 a {
     text-decoration: none;
-    color: #4297DE;
-    margin-top: 20px;
-    display: inline-block;
-}
-
-a:hover {
-    text-decoration: underline;
+    color: white;
 }
 
 form {
     display: inline-block;
+}
+
+h3 {
+    text-align: right;
+    margin: 30px 30px 0 0;
+    font-size: 1.5em;
+    color: #333;
+}
+
+.empty-cart {
+    text-align: center;
+    color: #444;
+}
+
+.empty-cart-image {
+    margin-top: 100px;
+    width: 300px;
+    height: 300px;
+    margin-bottom: 20px;
+    opacity: 0.8;
+}
+
+.empty-cart h2 {
+    font-size: 1.8em;
+    margin-bottom: 10px;
+}
+
+.empty-cart p {
+    font-size: 1em;
+    margin-bottom: 20px;
+}
+
+.back-to-shop button {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+.back-to-shop button:hover {
+    background-color: #ea4848;
 }

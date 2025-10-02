@@ -34,16 +34,16 @@ h1 {
     border-radius: 8px;
 }
 
-.product-info {
+.product-details {
     flex: 1;
     padding-left: 20px;
 }
 
-.product-info h2 {
+.product-details h2 {
     color: #e67e22;
 }
 
-.product-info p {
+.product-details p {
     line-height: 1.6;
 }
 
@@ -131,7 +131,6 @@ h1 {
     margin-top: 20px;
     flex-wrap: wrap;
     justify-content: space-between;
-    /* Khoảng cách đều giữa các sản phẩm */
     width: 100%;
 }
 
@@ -139,28 +138,6 @@ h1 {
     text-align: center;
     color: #333;
     width: 100%;
-}
-
-.related-product {
-    background: white;
-    border-radius: 8px;
-    padding: 10px;
-    text-align: center;
-    width: 150px;
-    margin: 10px;
-    /* Để tạo khoảng cách giữa các sản phẩm */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.related-product img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 5px;
-}
-
-.related-product p {
-    margin: 5px 0;
-    font-weight: bold;
 }
 
 .related-products-container {
@@ -173,9 +150,42 @@ h1 {
 .related-products-wrapper {
     display: flex;
     justify-content: space-between;
-    /* Khoảng cách đều giữa các sản phẩm liên quan */
     flex-wrap: wrap;
     width: 100%;
     max-width: 1000px;
-    /* Đặt giới hạn chiều rộng cho các sản phẩm liên quan */
+}
+
+.related-product {
+    background: white;
+    border-radius: 8px;
+    padding: 10px;
+    text-align: center;
+    width: 210px;
+    margin: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 360px;
+}
+
+.related-product img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+    flex-grow: 1; /* Cho phép hình ảnh mở rộng */
+}
+
+.related-product p {
+    margin: 5px 0;
+    font-weight: bold;
+}
+
+/* Đảm bảo nút nằm ở dưới cùng */
+.related-product .button {
+    background-color: #ff4d4d;
+    margin-top: auto; /* Đẩy nút xuống dưới cùng */
+    padding: 10px 0; /* Thêm padding để nút lớn hơn */
+    width: 100%; /* Đặt chiều rộng nút bằng 100% */
+    text-align: center; /* Căn giữa văn bản trong nút */
 }

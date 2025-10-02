@@ -1,0 +1,34 @@
+{% load static %}
+{% load humanize %}
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kết quả tìm kiếm cho "{{ query }}"</title>
+</head>
+<body>
+    {% include './header.html' %}
+    <div class="featured-products">
+        <div class="container">
+            <h2>Kết quả tìm kiếm cho "{{ query }}"</h2>
+            <div class="product-grid">
+                {% if products %}
+                    {% for product in products %}
+                    <div class="product-item">
+                        <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                        <h3>{{ product.name }}</h3>
+                        <p>Giá: {{ product.price|intcomma }} VNĐ</p>
+                        <div class="product-info">
+                            <a href="{% url 'product_detail' product.id %}" class="btn">Xem chi tiết</a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                {% else %}
+                    <p>Không tìm thấy sản phẩm nào cho từ khóa "{{ query }}".</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>

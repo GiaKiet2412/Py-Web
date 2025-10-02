@@ -1,0 +1,42 @@
+{% include './header.html' %}
+{% load static %}
+{% load humanize %}
+<!-- order_detail.html -->
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/order_history.css' %}">
+    <title>Chi Tiết Đơn Hàng #{{ order.id }}</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Chi tiết đơn hàng #{{ order.id }}</h1>
+        <p><strong>Ngày đặt hàng:</strong> {{ order.order_date|date:"d-m-Y" }}</p>
+        <p><strong>Tổng giá:</strong> {{ order.total_price|intcomma }} VNĐ</p>
+        <p><strong>Địa chỉ giao hàng:</strong> {{ order.shipping_address }}</p>
+        <p><strong>Phương thức thanh toán:</strong> {{ order.payment_method }}</p>
+
+        <h2>Thông tin sản phẩm</h2>
+        <table class="order-table">
+            <thead>
+                <tr>
+                    <th>Tên Sản Phẩm</th>
+                    <th>Số Lượng</th>
+                    <th>Giá</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for detail in order_details %}
+                    <tr>
+                        <td>{{ detail.product_id.name }}</td>
+                        <td>{{ detail.quantity }}</td>
+                        <td>{{ detail.price|intcomma }} VNĐ</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

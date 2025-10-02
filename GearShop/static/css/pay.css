@@ -1,21 +1,41 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
     margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+.container {
+    max-width: 1300px;
+    margin: 0 auto;
     padding: 20px;
 }
 
 h1 {
     text-align: center;
     color: #333;
+    margin-bottom: 30px;
+    font-size: 2em;
+}
+
+h2 {
+    margin-top: 30px;
+    color: #333;
+}
+
+h3 {
+    margin: 15px 0;
+    color: #333;
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
-    margin: 20px 0;
     background-color: #fff;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
 }
 
 th, td {
@@ -25,25 +45,34 @@ th, td {
 }
 
 th {
-    background-color: #4297DE;
+    background-color: #ff4d4d;
     color: white;
+    font-weight: bold;
+    text-transform: uppercase;
 }
 
 tr:hover {
     background-color: #f1f1f1;
 }
 
+.invoice-container {
+    margin-bottom: 30px; /* Khoảng cách giữa bảng hóa đơn và phương thức thanh toán */
+}
+
 button {
-    background-color: #4297DE;
+    background-color: #ff4d4d;
     color: white;
     border: none;
-    padding: 10px 15px;
+    padding: 10px 20px;
+    margin-top: 10px;
     cursor: pointer;
     transition: background-color 0.3s;
+    border-radius: 5px;
+    font-size: 1em;
 }
 
 button:hover {
-    background-color: #3578b6;
+    background-color: #cf3636;
 }
 
 label {
@@ -51,24 +80,43 @@ label {
     margin-bottom: 5px;
 }
 
+.shipping-address {
+    margin: 5px 0 10px 0;
+    width: 100%;
+    height: 80px;
+}
+
+.payment-methods {
+    width: 800px ;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.methods-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.method {
+    flex: 1; /* Chiếm đều không gian */
+    margin: 10px; /* Khoảng cách giữa các ô */
+    padding: 15px;
+    background-color: #f4f4f4; /* Màu nền nhẹ cho các phương thức */
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+textarea {
+    width: 100%;
+    height: 80px; /* Độ cao của ô nhập địa chỉ */
+}
+
 select {
     padding: 10px;
     width: 100%;
+    margin: 5px 0 10px 0;
     border: 1px solid #ddd;
     border-radius: 4px;
-}
-
-form {
-    margin-top: 20px;
-}
-
-a {
-    text-decoration: none;
-    color: #4297DE;
-    display: block;
-    margin-top: 20px;
-}
-
-a:hover {
-    text-decoration: underline;
 }

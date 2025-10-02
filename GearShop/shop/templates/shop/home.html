@@ -1,83 +1,125 @@
 {% load static %}
+{% load humanize %}
+{% load load_customer %}
 <!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>XTech - Thiết bị công nghệ chính hãng</title>
+    <title>PCStore - Thiết bị công nghệ chính hãng</title>
     <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 <body>
-    <!-- Header -->
     <header>
-        <div class="container container-header">
-            <!-- Logo -->
+        <div class="container-wrapper">
             <div class="logo">
-                <a href="{% url 'home' %}"><img src="{% static 'image/{{ logo.jpg }}' %}" alt="Tên cửa hàng"></a>
+                <a href="{% url 'home' %}"><img src="{% static 'image/PCstore3.png' %}" alt="Logo"></a>
             </div>
+            <div class="header">
+                <nav class="container">
+                    <ul class="main-menu" style="margin: 0 50px 0 100px">
+                        <li><a href="{% url 'home' %}">Trang chủ</a></li>
+                        <li><a href="{% url 'asus_products' %}">ASUS</a>
+                            <ul class="sub-menu">
+                                <li><a href="{% url 'rog_products' %}">ROG</a></li>
+                                <li><a href="{% url 'tuf_products' %}">TUF</a></li>
+                                <li><a href="{% url 'vivo_products' %}">Vivobook</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="{% url 'acer_products' %}">Acer</a>
+                            <ul class="sub-menu">
+                                <li><a href="{% url 'ntr_products' %}">Nitro</a></li>
+                                <li><a href="{% url 'hel_products' %}">Helios</a></li>
+                                <li><a href="{% url 'asp_products' %}">Aspire</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="{% url 'lnv_products' %}">LENOVO</a>
+                            <ul class="sub-menu">
+                                <li><a href="{% url 'lgn_products' %}">Legion</a></li>
+                                <li><a href="{% url 'loq_products' %}">LOQ</a></li>
+                                <li><a href="{% url 'thk_products' %}">Thinkpad</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="{% url 'msi_products' %}">MSI</a>
+                            <ul class="sub-menu">
+                                <li><a href="{% url 'ktn_products' %}">Katana</a></li>
+                                <li><a href="{% url 'thi_products' %}">Thin</a></li>
+                                <li><a href="{% url 'cre_products' %}">Creator</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="{% url 'pk_products' %}">Phụ Kiện</a>
+                            <ul class="sub-menu">
+                                <li><a href="{% url 'hph_products' %}">Tai Nghe</a></li>
+                                <li><a href="{% url 'mou_products' %}">Chuột</a></li>
+                                <li><a href="{% url 'key_products' %}">Bàn Phím</a></li>
+                            </ul>
+                        </li>
+                    </ul>    
+                </nav>
 
-            <!-- Menu điều hướng -->
-            <nav class="main-nav">
-                <ul>
-                    <li><a href="#">Trang chủ</a></li>
-                    <li><a href="#">Sản phẩm</a></li>
-                    <li><a href="#">Khuyến mãi</a></li>
-                    <li><a href="#">Liên hệ</a></li>
-                    <li><a href="#">Đăng nhập</a></li>
-                    <li><a href="#">Đăng ký</a></li>
+                <div class="giohang">
+                    <a href="{% url 'cart_detail' %}">
+                        <button class="cart"><i class="fa-solid fa-cart-shopping" alt="Cart"></i></button>
+                    </a>
+                </div>
+    
+                <div class="input-box">
+                    <form action="{% url 'search_products' %}" method="get">
+                        <input type="text" name="tukhoa" placeholder="Tìm kiếm" class="input-field"><i class="fa fa-search"></i>
+                    </form>
+                </div>
+                
+                <ul class="main-menu">
+                    <li>
+                        {% if request.session.customer_id %}
+                            {% with customer=request.session.customer_id %}
+                                {% with customer_obj=customer|load_customer %}  
+                                    <a href="{% url 'order_history' %} ">Xin chào {{ customer_obj.name }} !</a>
+                                    <ul class="sub-menu">
+                                        <li><a href="{% url 'logout' %}">Đăng xuất</a></li>
+                                    </ul>
+                                {% endwith %}
+                            {% endwith %}
+                        {% else %}
+                            <a href="{% url 'login' %}">Đăng nhập <i class="fa-regular fa-user" style="color: white;"></i></a>
+                        {% endif %}
+                    </li>
                 </ul>
-            </nav>
-
-            <!-- Icon tìm kiếm và giỏ hàng -->
-            <div class="header-icons">
-                <a href="#"><img src="search-icon.png" alt="Search"></a>
-                <a href="#"><img src="cart-icon.png" alt="Cart"></a>
             </div>
         </div>
     </header>
-
-    <!-- Banner -->
-    <section class="banner">
+    {% if messages %}
+    {% for message in messages %}
+        <div class="alert {{ message.tags }}">{{ message }}</div>
+    {% endfor %}
+    {% endif %}
+    <div class="banner">
         <div class="banner-content">
             <h1>Siêu giảm giá tháng 10</h1>
             <p>Mua ngay các sản phẩm công nghệ hàng đầu với giá ưu đãi</p>
-            <a href="#" class="btn">Mua ngay</a>
+            <img src="https://file.hstatic.net/200000837185/collection/1200x450_pc_van_phong_20d02d9e834942af8d91ed64ca13d19b.png" alt="Banner"/>
         </div>
-    </section>
+    </div>
 
-    <!-- Sản phẩm nổi bật -->
-    <section class="featured-products">
+    <div class="featured-products">
         <div class="container">
             <h2>Sản phẩm nổi bật</h2>
             <div class="product-grid">
+                {% for product in featured_products %}
                 <div class="product-item">
-                    <img src="laptop1.jpg" alt="Laptop 1">
-                    <h3>Laptop Gaming Gigabyte G5</h3>
-                    <p>Giá: 19,290,000đ</p>
-                    <a href="{% url 'product_detail' 1 %}" class="btn">Xem chi tiết</a>
+                    <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                    <h3>{{ product.name }}</h3>
+                    <p>Giá: {{ product.price|intcomma }} VNĐ</p>
+                    <div class="product-info">
+                        <a href="{% url 'product_detail' product.id %}" class="btn">Xem chi tiết</a>
+                    </div>
                 </div>
-                <div class="product-item">
-                    <img src="laptop2.jpg" alt="Laptop 2">
-                    <h3>Laptop Gaming ABC</h3>
-                    <p>Giá: 30,000,000đ</p>
-                    <a href="{% url 'product_detail' 2 %}" class="btn">Xem chi tiết</a>
-                </div>
-                <div class="product-item">
-                    <img src="keyboard.jpg" alt="Bàn phím cơ">
-                    <h3>Bàn phím cơ XYZ</h3>
-                    <p>Giá: 2,000,000đ</p>
-                    <a href="{% url 'product_detail' 3 %}" class="btn">Xem chi tiết</a>
-                </div>
-                <div class="product-item">
-                    <img src="mouse.jpg" alt="Chuột gaming">
-                    <h3>Chuột Gaming ABC</h3>
-                    <p>Giá: 1,500,000đ</p>
-                    <a href="{% url 'product_detail' 4 %}" class="btn">Xem chi tiết</a>
-                </div>
+                {% endfor %}
             </div>
         </div>
-    </section>
+    </div>
 
     <!-- Footer -->
     <footer>
@@ -85,9 +127,9 @@
             <div class="footer-section">
                 <h4>Thông tin</h4>
                 <ul>
-                    <li><a href="#">Chính sách bảo hành</a></li>
-                    <li><a href="#">Chính sách đổi trả</a></li>
-                    <li><a href="#">Điều khoản dịch vụ</a></li>
+                    <li>Chính sách bảo hành</li>
+                    <li>Chính sách đổi trả</li>
+                    <li>Điều khoản dịch vụ</li>
                 </ul>
             </div>
             <div class="footer-section">
@@ -99,9 +141,7 @@
             </div>
             <div class="footer-section">
                 <h4>Kết nối</h4>
-                <a href="#"><img src="fb-icon.png" alt="Facebook"></a>
-                <a href="#"><img src="ig-icon.png" alt="Instagram"></a>
-                <a href="#"><img src="yt-icon.png" alt="YouTube"></a>
+                <a href="https://www.facebook.com/"><img src="{% static 'image/facebook.png' %}" alt="Facebook"></a>
             </div>
         </div>
     </footer>

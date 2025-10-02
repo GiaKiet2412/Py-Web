@@ -19,6 +19,15 @@ body {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 25px;
     width: 600px; /* Tăng chiều ngang */
+    transition: box-shadow 0.3s ease; /* Thêm hiệu ứng chuyển động */
+}
+
+.admin-login {
+    border: 2px solid #e50914; /* Khung cho trang đăng nhập admin */
+}
+
+.customer-login {
+    border: 2px solid #007bff; /* Khung cho trang đăng nhập khách hàng */
 }
 
 h2 {
@@ -37,6 +46,7 @@ label {
     font-size: 1.1em; /* Nhỏ hơn so với trước */
 }
 
+input[type="text"],
 input[type="email"],
 input[type="password"] {
     width: 100%;
@@ -44,6 +54,13 @@ input[type="password"] {
     font-size: 1.1em; /* Giảm nhẹ kích thước chữ */
     border: 1px solid #ccc;
     border-radius: 6px;
+    transition: border-color 0.3s ease; /* Hiệu ứng chuyển màu */
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus {
+    border-color: #007bff; /* Màu viền khi focus */
 }
 
 .password-wrapper {
@@ -80,6 +97,11 @@ input[type="password"] {
     font-size: 1.2em; /* Giảm kích thước chữ nút */
     cursor: pointer;
     margin-bottom: 18px;
+    transition: background-color 0.3s ease; /* Hiệu ứng chuyển màu */
+}
+
+.login-btn:hover {
+    background-color: #c50712; /* Màu khi hover */
 }
 
 .login-alt {

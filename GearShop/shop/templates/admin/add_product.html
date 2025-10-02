@@ -1,0 +1,20 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/add_product.css' %}">
+    <title>Thêm Sản Phẩm</title>
+</head>
+<body>
+    {% include './header_admin.html' %}
+
+    <h2>Thêm sản phẩm mới</h2>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Thêm sản phẩm</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,66 @@
+{% load static %}
+{% load humanize %}
+{% load load_customer %}
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>PCStore - Thiết bị công nghệ chính hãng</title>
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container-wrapper">
+            <div class="logo">
+                <a href="{% url 'home' %}"><img src="{% static 'image/PCstore3.png' %}" alt="Logo"></a>
+            </div>
+            <div class="header">
+                <nav class="container">
+                    <ul class="main-menu" style="margin: 0 50px 0 100px">
+                        <li><a href="{% url 'home_ad' %}">Trang chủ</a></li>
+                        <li><a href="{% url 'admin_products' %}">Quản lý sản phẩm</a></li>                        
+                        <li><a href="{% url 'admin_order_history' %}">Quản lý đơn hàng</a></li>
+                    </ul>    
+                </nav>
+
+                <ul class="main-menu">
+                    <li>
+                        {% if request.user.is_authenticated %}
+                            <span>Xin chào {{ request.user.username }}!</span>
+                            <ul class="sub-menu">
+                                <li><a href="{% url 'logout' %}">Đăng xuất</a></li>
+                            </ul>
+                        {% else %}
+                            <a href="{% url 'login' %}">Đăng nhập <i class="fa-regular fa-user" style="color: white;"></i></a>
+                        {% endif %}
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    {% if messages %}
+    {% for message in messages %}
+        <div class="alert {{ message.tags }}">{{ message }}</div>
+    {% endfor %}
+    {% endif %}
+    
+    <div class="banner">
+        <div class="banner-content">
+            <h1>Siêu giảm giá tháng 10</h1>
+            <p>Mua ngay các sản phẩm công nghệ hàng đầu với giá ưu đãi</p>
+            <img src="https://file.hstatic.net/200000837185/collection/1200x450_pc_van_phong_20d02d9e834942af8d91ed64ca13d19b.png" alt="Banner"/>
+        </div>
+    </div>
+
+    {% if not request.user.is_authenticated %}
+    <script>
+        alert('Bạn cần phải đăng nhập trước!'); 
+        window.location.href = '{% url "admin_login" %}';
+    </script>
+    {% endif %}
+</body>
+</html>

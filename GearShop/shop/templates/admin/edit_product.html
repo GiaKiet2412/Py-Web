@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/edit_product.css' %}">
+    <title>Sửa Sản Phẩm</title>
+</head>
+<body>
+    {% include './header_admin.html' %}
+
+    <h1>Sửa Sản Phẩm: {{ product.name }}</h1>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div>
+            <label for="name">Tên sản phẩm:</label>
+            <input type="text" id="name" name="name" value="{{ product.name }}" required>
+        </div>
+        <div>
+            <label for="description">Mô tả:</label>
+            <textarea id="description" name="description" required>{{ product.description }}</textarea>
+        </div>
+        <div>
+            <label for="price">Giá:</label>
+            <input type="number" id="price" name="price" value="{{ product.price }}" required>
+        </div>
+        <div>
+            <label for="stock">Số lượng:</label>
+            <input type="number" id="stock" name="stock" value="{{ product.stock }}" required>
+        </div>
+        <div>
+            <label for="brand">Thương hiệu:</label>
+            <input type="text" id="brand" name="brand" value="{{ product.brand }}" required>
+        </div>
+        <div>
+            <label for="type">Loại:</label>
+            <input type="text" id="type" name="type" value="{{ product.type }}" required>
+        </div>
+        <div>
+            <label for="image">Ảnh:</label>
+            <input type="file" id="image" name="image">
+        </div>
+        <button type="submit">Cập nhật sản phẩm</button>
+    </form>
+
+    <a href="{% url 'admin_products' %}" class="btn btn-secondary">Quay lại</a>
+</body>
+</html>

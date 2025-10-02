@@ -1,4 +1,6 @@
 {% load static %}
+{% load humanize %}
+{% include './header.html' %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,44 +8,68 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thanh Toán</title>
     <link rel="stylesheet" href="{% static 'css/pay.css' %}">
+    <script>
+        function confirmPayment() {
+            return confirm("Bạn có chắc muốn đặt đơn hàng này không?");
+        }
+    </script>
 </head>
 <body>
-    <h1>Thanh Toán</h1>
+    <div class="container">
+        <h1>Thanh Toán</h1>
+        
+        <div class="invoice-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>SẢN PHẨM</th>
+                        <th>GIÁ</th>
+                        <th>SỐ LƯỢNG</th>
+                        <th>TỔNG TIỀN</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in cart_items %}
+                    <tr>
+                        <td>{{ item.product.name }}</td>
+                        <td>{{ item.product.price|intcomma }} VNĐ</td>
+                        <td>{{ item.quantity }}</td>
+                        <td>{{ item.total_price|floatformat:0|intcomma }} VNĐ</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
 
-    <table>
-        <thead>
-            <tr>
-                <th>SẢN PHẨM</th>
-                <th>GIÁ</th>
-                <th>SỐ LƯỢNG</th>
-                <th>TỔNG TIỀN</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for item in cart_items %}
-            <tr>
-                <td>{{ item.product.name }}</td>
-                <td>{{ item.product.price }} VNĐ</td>
-                <td>{{ item.quantity }}</td>
-                <td>{{ item.total_price }} VNĐ</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+            <h3>Tổng tiền: {{ total_price|floatformat:0|intcomma }} VNĐ</h3>
+        </div>
 
-    <h3>Tổng tiền: {{ total_price }} VNĐ</h3>
-
-    <form action="{% url 'process_payment' %}" method="post">
-        {% csrf_token %}
-        <label for="payment-method">Chọn phương thức thanh toán:</label>
-        <select id="payment-method" name="payment_method" required>
-            <option value="credit_card">Thẻ tín dụng</option>
-            <option value="bank_transfer">Chuyển khoản ngân hàng</option>
-            <option value="cash_on_delivery">Thanh toán khi nhận hàng</option>
-        </select>
-        <button type="submit">Xác nhận thanh toán</button>
-    </form>
-
-    <a href="{% url 'cart_view' %}">Quay lại giỏ hàng</a>
+        <div class="payment-methods">
+            <h2>Phương Thức Thanh Toán</h2>
+            <div class="methods-container">
+                <form action="{% url 'process_payment' %}" method="post" onsubmit="return confirmPayment();">
+                    {% csrf_token %}
+                    <input type="hidden" name="payment_method" value="Thanh toán khi nhận hàng">
+                    <div class="method">
+                        <h3>Thanh toán khi nhận hàng</h3>
+                        <label for="shipping-address">Địa chỉ giao hàng:</label>
+                        <textarea class="shipping-address" name="shipping_address" required></textarea>
+                        <button type="submit">Xác nhận đặt hàng</button>
+                    </div>
+                </form>
+                
+                <form method="post" action="{% url 'create_payment_url' %}" id="payment-form" onsubmit="return confirmPayment();">
+                    {% csrf_token %}
+                    <input type="hidden" name="amount" value="{{ total_price|floatformat:0 }}">
+                    <input type="hidden" name="bankCode" value="">
+                    <div class="method">
+                        <h3>Thanh toán qua VNPay</h3>
+                        <label for="shipping-address-vnpay">Địa chỉ giao hàng:</label>
+                        <textarea name="shipping_address" required></textarea>
+                        <button type="submit">Thanh toán qua VNPay</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

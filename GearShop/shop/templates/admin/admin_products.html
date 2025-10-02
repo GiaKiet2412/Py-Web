@@ -1,0 +1,56 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/admin_products.css' %}">
+    <title>Quản lý Sản Phẩm</title>
+</head>
+<body>
+    {% include './header_admin.html' %}
+    {% if not request.user.is_authenticated %}
+    <script>
+        alert('Bạn cần phải đăng nhập trước!'); 
+        window.location.href = '{% url "admin_login" %}';
+    </script>
+    {% else %}
+    <h1>Danh sách Sản Phẩm</h1>
+    <a href="{% url 'add_product' %}" class="btn btn-success">Thêm sản phẩm mới</a>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Tên Sản Phẩm</th>
+                <th>Thương hiệu</th>
+                <th>Loại</th>
+                <th>Giá</th>
+                <th>Số lượng</th>
+                <th>Ảnh</th>
+                <th>Chỉnh sửa</th>
+                <th>Xóa</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in products %}
+            <tr>
+                <td>{{ product.name }}</td>
+                <td>{{ product.brand }}</td>
+                <td>{{ product.type }}</td>
+                <td>{{ product.price }}</td>
+                <td>{{ product.stock }}</td>
+                <td>
+                    <img src="{{ product.image.url }}" alt="{{ product.name }}" width="100">
+                </td>
+                <td>
+                    <a href="{% url 'edit_product' product.id %}">Chỉnh sửa</a>
+                </td>
+                <td>
+                    <a href="{% url 'delete_product' product.id %}" onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này?')">Xóa</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+</body>
+</html>

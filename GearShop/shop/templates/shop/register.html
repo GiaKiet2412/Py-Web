@@ -10,20 +10,21 @@
 <body>
     <div class="login-container">
         <div class="login-box">
-            <h2>ĐĂNG KÝ TÀI KHOẢN GEARVN</h2>
-            <form action="#">
+            <h2>ĐĂNG KÝ TÀI KHOẢN</h2>
+            <form action="{% url 'register' %}" method="POST" class="register-form">
+                {% csrf_token %}
                 <div class="input-group">
                     <label for="name">Họ và Tên</label>
-                    <input type="name" id="name" placeholder="Họ và Tên">
+                    <input type="text" name="name" placeholder="Họ và Tên">
                 </div>
                 <div class="input-group">
                     <label for="email">Email</label>
-                    <input type="email" id="email" placeholder="Email">
+                    <input type="email" name="email" placeholder="Email">
                 </div>
                 <div class="input-group">
                     <label for="password">Mật khẩu</label>
                     <div class="password-wrapper">
-                        <input type="password" id="password" placeholder="Mật khẩu">
+                        <input type="password" name="password" placeholder="Mật khẩu">
                     </div>
                 </div>
                 <button type="submit" class="register-btn">TẠO TÀI KHOẢN</button>

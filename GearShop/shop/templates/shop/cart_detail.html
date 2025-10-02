@@ -1,0 +1,73 @@
+{% load static %}
+{% load humanize %}
+{% load load_customer %}
+{% include './header.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giỏ Hàng</title>
+    <link rel="stylesheet" href="{% static 'css/cart.css' %}">
+</head>
+{% if payment_message %}
+    <script>
+        alert("{{ payment_message }}");
+    </script>
+{% endif %}
+<body>  
+    {% if cart_items %}
+    <table>
+        <thead>
+            <tr>
+                <th>HÌNH ẢNH</th>
+                <th>SẢN PHẨM</th>
+                <th>GIÁ</th>
+                <th>SỐ LƯỢNG</th>
+                <th>TỔNG TIỀN</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in cart_items %}
+            <tr>
+                <td><img class="image" src="{{ item.product.image.url }}" alt="{{ item.product.name }}"></td>
+                <td>{{ item.product.name }}</td>
+                <td>{{ item.price|floatformat:0|intcomma }} VNĐ</td>
+                <td>
+                    <form action="{% url 'update_cart' product_id=item.product.id %}" method="post">
+                        {% csrf_token %}
+                        <input type="number" name="quantity" value="{{ item.quantity }}" min="1">
+                        <button type="submit">Cập nhật</button>
+                    </form>
+                </td>
+                <td>{{ item.total_price|floatformat:0|intcomma }} VNĐ</td>
+                <td><a href="{% url 'remove_from_cart' product_id=item.product.id %}"><button>Xóa</button></a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h3>Tổng tiền: {{ total_price|floatformat:0|intcomma }} VNĐ</h3>
+    <a href="/" class="back-to-shop"><button>Quay lại cửa hàng</button></a>
+
+    {% if request.session.customer_id %}
+        {% with customer=request.session.customer_id %}
+            {% with customer_obj=customer|load_customer %}  
+                <a href="{% url 'pay' %}"><button>Thanh toán</button></a>
+            {% endwith %}
+        {% endwith %}
+    {% else %}
+        <a href="{% url 'login' %}"><button>Đăng nhập để thanh toán</button></a>
+    {% endif %}
+        <a href="{% url 'clear_cart' %}"><button>Xóa tất cả</button></a>
+    {% else %}
+        <div class="empty-cart">
+            <img src="{% static 'image/empty-cart.png' %}" alt="Giỏ hàng trống" class="empty-cart-image">
+            <h2>Giỏ hàng của bạn đang trống!</h2>
+            <p>Hãy khám phá các sản phẩm và thêm vào giỏ hàng ngay nhé.</p>
+            <a href="/" class="back-to-shop"><button>Quay lại cửa hàng</button></a>
+        </div>
+    {% endif %}
+</body>
+</html>

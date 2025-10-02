@@ -1,0 +1,55 @@
+{% load humanize %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/order_history.css' %}">
+    <title>Quản Lý Đơn Hàng</title>
+    <script>
+        function confirmCancel() {
+            return confirm("Bạn có chắc chắn muốn hủy đơn hàng này?");
+        }
+        function confirmConfirm() {
+            return confirm("Bạn có chắc chắn muốn xác nhận đơn hàng này?");
+        }
+    </script>
+</head>
+<body>
+    {% include 'admin/header_admin.html' %}
+    <div class="container">
+        <h1>Quản Lý Đơn Hàng</h1>
+        <table class="order-history-table">
+            <thead>
+                <tr>
+                    <th>ID Đơn Hàng</th>
+                    <th>Ngày Đặt Hàng</th>
+                    <th>Tổng Giá</th>
+                    <th>Trạng Thái</th>
+                    <th>Phương Thức Thanh Toán</th> <!-- Thêm cột này -->
+                    <th>Hành Động</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for order in orders %}
+                    <tr>
+                        <td>{{ order.id }}</td>
+                        <td>{{ order.order_date|date:"d-m-Y" }}</td>
+                        <td>{{ order.total_price|intcomma }} VNĐ</td>
+                        <td>{{ order.status }}</td>
+                        <td>{{ order.payment_method }}</td>
+                        <td>
+                            {% if order.status == 'Đang duyệt' %}
+                                <a href="{% url 'admin_cancel_order' order.id %}" class="cancel-button" onclick="return confirmCancel();">Hủy Đơn</a>
+                                <a href="{% url 'confirm_order' order.id %}" class="confirm-button" onclick="return confirmConfirm();">Xác Nhận Đơn</a>
+                            {% endif %}
+                            <a href="{% url 'admin_order_detail' order.id %}" class="detail-button">Xem Chi Tiết</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
